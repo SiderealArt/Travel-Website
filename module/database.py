@@ -44,6 +44,7 @@ class DB:
                     else: #同ID 同Title->更新
                         self.DataBase.collection('TravelInfo').document(No).update(Data)
                         print('[database-INFO] 更新完成')
+                        return
             self.DataBase.collection('TravelInfo').document(No).set(Data)
             print('[database-INFO] 新增完成')
             return
