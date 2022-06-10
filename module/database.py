@@ -9,9 +9,11 @@ except ModuleNotFoundError:
 
 class DB:
 
-    __slots__=('DataBase')
+    __slots__=('DataBase','Datalist')
 
     def __init__(self)->None:
+
+        self.Datalist=list()
         # 登入Firebase
         try:
             Cred=firebase.credentials.Certificate(tool.GetConfigData('Firebase','JsonFilePath'))
@@ -49,6 +51,17 @@ class DB:
             print('[database-INFO] 新增完成')
             return
         
+    def STravelInfo(self)->list:
+        if self.DataBase=='':
+            print('[database-ERROR] 你尚未登入')
+            return
+        else:
+            for Doc in self.DataBase.collection('TravelInfo').get():
+                PrettyData=dict(sorted(self.DataBase.collection('TravelInfo').document(Doc.id).get().to_dict().items()))
+                # print(f'{Doc.id} {PrettyData}')
+                self.Datalist.append(PrettyData)
+            return self.Datalist
+
 
     def FormDataGet(self,Type):
         if Type=='CU':
