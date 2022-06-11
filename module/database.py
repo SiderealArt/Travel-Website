@@ -25,7 +25,7 @@ class DB:
             self.DataBase=''
 
 
-    def CUTravelInfo(self,No,Title,ImageName,Content,StartTime,EndTime,Limit):
+    def CreateUpdate(self,TargetCollection,No,Title,ImageName,Content,StartTime,EndTime,Limit):
         if self.DataBase=='':
             print('[database-ERROR] 你尚未登入')
             return
@@ -38,50 +38,58 @@ class DB:
                 'EndTime':EndTime,
                 'Limit':Limit
             }
-            for Docs in self.DataBase.collection('TravelInfo').get():
+            for Docs in self.DataBase.collection(TargetCollection).get():
                 if Docs.id==No:
-                    if self.DataBase.collection('TravelInfo').document(No).get().to_dict()['Title']!=Title:
+                    if self.DataBase.collection(TargetCollection).document(No).get().to_dict()['Title']!=Title:
                         print('[database-ERROR] ID衝突')
                         return
                     else: #同ID 同Title->更新
-                        self.DataBase.collection('TravelInfo').document(No).update(Data)
+                        self.DataBase.collection(TargetCollection).document(No).update(Data)
                         print('[database-INFO] 更新完成')
                         return
-            self.DataBase.collection('TravelInfo').document(No).set(Data)
+            self.DataBase.collection(TargetCollection).document(No).set(Data)
             print('[database-INFO] 新增完成')
             return
-        
-    def STravelInfo(self)->list:
+
+
+    def Search(self,TargetCollection)->list:
         if self.DataBase=='':
             print('[database-ERROR] 你尚未登入')
             return
         else:
-            for Doc in self.DataBase.collection('TravelInfo').get():
-                PrettyData=dict(sorted(self.DataBase.collection('TravelInfo').document(Doc.id).get().to_dict().items()))
-                # print(f'{Doc.id} {PrettyData}')
-                self.Datalist.append(PrettyData)
+            self.Datalist=list()
+            for Doc in self.DataBase.collection(TargetCollection).get():
+                Data=self.DataBase.collection(TargetCollection).document(Doc.id).get().to_dict()
+                # print(f'{Doc.id} {Data}')
+                self.Datalist.append(Data)
             return self.Datalist
-
-
-    def FormDataGet(self,Type):
+    
+    def Delete(self,TargetCollection,No):
+        if No =='':
+            return 
+        else:
+            try:
+                self.DataBase.collection(TargetCollection).document(No).delete()
+                print('[database-INFO] 刪除請求成功')
+            except:
+                print('[database-ERROR] 刪除請求失敗')
+            return 
+    
+    def HandleUpdateDatabase(self,Type,TargetCollection):
         if Type=='CU':
-            No=flask.request.values.get('No')
-            Title=flask.request.values.get('Title')
-            ImageName=flask.request.values.get('ImageName')
-            Content=flask.request.values.get('Content')
-            StartTime=flask.request.values.get('StartTime')
-            EndTime=flask.request.values.get('EndTime')
-            Limit=flask.request.values.get('Limit')
-            self.CUTravelInfo(No,Title,ImageName,Content,StartTime,EndTime,Limit)
+            if TargetCollection=='TravelInfo':
+                No=flask.request.values.get('No')
+                Title=flask.request.values.get('Title')
+                ImageName=flask.request.values.get('ImageName')
+                Content=flask.request.values.get('Content')
+                StartTime=flask.request.values.get('StartTime')
+                EndTime=flask.request.values.get('EndTime')
+                Limit=flask.request.values.get('Limit')
+                self.CreateUpdate(TargetCollection,No,Title,ImageName,Content,StartTime,EndTime,Limit)
+        elif Type=='D':
+            if TargetCollection=='TravelInfo':
+                No=flask.request.values.get('No')
+                self.Delete(TargetCollection,No)
         return
-# Debug 
-if __name__=='__main__': 
-    Test=DB()
-    No=input('Enter No:')
-    Title=input('Enter Title:')
-    ImageName=input('ImageName:')
-    Content=input('Content:')
-    StartTime=input('StartTime(Format:yyyy-mm-dd ex:2022-06-04)')
-    EndTime=input('EndTime(Format:yyyy-mm-dd ex:2022-06-04)')
-    Limit=input('Limit:')
-    Test.CUTravelInfo(No,Title,ImageName,Content,StartTime,EndTime,Limit)
+
+        
