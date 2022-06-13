@@ -25,34 +25,42 @@ class DB:
             self.DataBase=''
 
 
-    def CreateUpdate(self,TargetCollection,No,Title,ImageName,Content,StartTime,EndTime,Limit):
+    def CreateUpdate(self,TargetCollection,DocumentName,Data1,Data2=None,Data3=None,Data4=None,Data5=None,Data6=None):
         if self.DataBase=='':
             print('[database-ERROR] 你尚未登入')
             return
         else:
-            Data={
-                'Title':Title,
-                'ImageName':ImageName,
-                'Content':Content,
-                'StartTime':StartTime,
-                'EndTime':EndTime,
-                'Limit':Limit
-            }
+            if TargetCollection=='TravelInfo':
+                Data={
+                    'Title':Data1, # str
+                    'ImageName':Data2, # str
+                    'Content':Data3, # str
+                    'StartTime':Data4, # str
+                    'EndTime':Data5, # str
+                    'Limit':Data6 # str
+                }
+            elif TargetCollection=='AdminAccount':
+                Data={
+                    'Password':Data1,
+                }
             for Docs in self.DataBase.collection(TargetCollection).get():
-                if Docs.id==No:
-                    if self.DataBase.collection(TargetCollection).document(No).get().to_dict()['Title']!=Title:
+                if Docs.id==DocumentName:
+                    if self.DataBase.collection(TargetCollection).document(DocumentName).get().to_dict()['Title']!=Data1:
                         print('[database-ERROR] ID衝突')
                         return
                     else: #同ID 同Title->更新
-                        self.DataBase.collection(TargetCollection).document(No).update(Data)
+                        self.DataBase.collection(TargetCollection).document(DocumentName).update(Data)
                         print('[database-INFO] 更新完成')
                         return
-            self.DataBase.collection(TargetCollection).document(No).set(Data)
+            self.DataBase.collection(TargetCollection).document(DocumentName).set(Data)
             print('[database-INFO] 新增完成')
             return
 
 
     def Search(self,TargetCollection)->list:
+        '''
+        Search用於document名稱無意義時使用
+        '''
         if self.DataBase=='':
             print('[database-ERROR] 你尚未登入')
             return
