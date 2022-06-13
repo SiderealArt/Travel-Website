@@ -57,8 +57,10 @@ class Admin:
             if SessionAccount.id==LoginAccount:
                 Session=self.FireBase.DataBase.collection('Session-Admin').document(SessionAccount.id).get().to_dict()
                 if flask.request.cookies.get('Token')==Session['Token']:
-                    if datetime.datetime.now()-datetime.datetime.strptime(Session['LoginTime'],'%Y/%m/%d-%H:%M:%S')<=datetime.timedelta(hours=1):
+                    if datetime.datetime.now()-datetime.datetime.strptime(Session['LoginTime'],'%Y/%m/%d-%H:%M:%S')<=datetime.timedelta(hours=1): # 超過生存時間
                         return True
+                    else:
+                        self.HandleReLogin()
         return False
     
 
@@ -81,6 +83,13 @@ class Admin:
             return True,Cookie
         return False,''
 
+    def HandleReLogin(self):
+        UserName=flask.request.cookies.get('Username')
+        Cookie=flask.make_response(flask.redirect('/op/login'))
+        Cookie.delete_cookie('LoginAccount')
+        Cookie.delete_cookie('Token')
+        self.FireBase.DataBase.collection('Session-Admin').document(UserName).delete()
+        return
 
 if __name__=='__main__':
     Test=Admin(database.DB())
