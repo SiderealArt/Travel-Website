@@ -1,0 +1,66 @@
+@charset "UTF-8";
+html {
+  scroll-behavior: smooth;
+  height: 100vh;
+}
+
+#ERROR {
+  font-family: 微軟正黑體;
+  font-size: x-large;
+  font-weight: bolder;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: white;
+  background-color: red;
+}
+
+#login {
+  font-family: 微軟正黑體;
+  font-size: x-large;
+  font-weight: bolder;
+  width: 100%;
+  text-align: center;
+  left: 50%;
+  right: 50%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 35vh;
+}
+
+#login input {
+  font-size: x-large;
+}
+
+#login button {
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: x-large;
+  font-weight: bolder;
+  background-color: white;
+  border-radius: 10px;
+  border-color: black;
+}
+
+#login button:hover {
+  color: white;
+  background-color: black;
+  border-color: white;
+}
+
+#warning {
+  font-family: 微軟正黑體;
+  font-size: x-large;
+  font-weight: bolder;
+  padding-top: 30vh;
+  bottom: 1%;
+  text-align: center;
+  color: red;
+  font-size: 30px;
+}

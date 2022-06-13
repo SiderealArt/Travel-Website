@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <title>後臺登入</title>
+    <link rel="stylesheet" href="/static/style/Adminlogin.css">
+</head>
+<body>
+    {% if ERROR %}
+    <div id="ERROR">
+        {{ERROR}}
+    </div>
+    {% endif %}
+    <div id="login">
+        <form method="POST">
+            <p class="account" >管理員帳號: <input type="text" name="account"></p>
+            <p class="password">管理員密碼: <input type="password" name="password"></p>
+            <p class="button"><button>確認</button></p>
+        </form>
+    </div>
+    <div id="warning">
+        <p> ※此區為"管理員"登入頁面，會員請勿由此登入。</p>
+    </div>
+</body>
+</html>
