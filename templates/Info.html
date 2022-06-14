@@ -1,28 +1,16 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>New/Update/Delete TravelInfo</title>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <form method="post">
-            <p><h1><label>新增或更新用</label></h1></p>
-            <p>編號<input type="text" name="No"></p>
-            <p>標題<input type="text" name="Title" required></p>
-            <p>圖片名稱<input type="text" name="ImageName"></p>
-            <p>文案<textarea name="Content" required></textarea></p>
-            <p>活動開始時間<input type="date" name="StartTime" required></p>
-            <p>活動結束時間<input type="date" name="EndTime"></p>
-            <p>最高報名人數<input type="number" name="Limit" value="1"></p>
-            <input type="text" name="ActionType" value="CU" hidden readonly>
-            <p><input type="submit" ></p>
-        </form>
-        <form method="post">
-            <p><h1><label>刪除用</label></h1></p>
-            <p>該項目編號<input type="text" name="No"></p>
-            <input type="text" name="ActionType" value="D" hidden readonly>
-            <p><input type="submit" ></p>
-        </form>
-        <h1>到時候可以在右邊顯示Info</h1>
-    </body>
+  <head>
+    <title>{{Title}}</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <p><div class="Title">{{Title}}</div></p>
+    <p><div class="Image"><img src="{{ImageUrl}}" /></div></p>
+    <p><div class="Content">{{Content}}</div></p>
+    <p><div class="StartTime">報名開始日期:{{StartTime}}</div></p>
+    <p><div class="EndTime">報名截止日期:{{EndTime}}</div></p>
+    <p><div class="Limit">報名人數上限:{{Limit}}</div></p>
+    <p><a href="/Ticketin/{{No}}">報名去!!!</a></p>
+  </body>
 </html>

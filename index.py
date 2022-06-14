@@ -11,10 +11,14 @@ App.config['JSON_AS_ASCII'] = False
 FireBase=module.database.DB()
 Admin=module.admin.Admin(FireBase)
 
-@App.route('/',methods=['GET','POST'])
+@App.route('/')
 def Home():
     return '這是臨時首頁'
 
+@App.route('/Info/<No>')
+def Info(No):
+    Data=FireBase.DataBase.collection('TravelInfo').document(No).get().to_dict()
+    return flask.render_template('Info.html',Title=Data['Title'],ImageUrl=Data['ImageUrl'],Content=Data['Content'],StartTime=Data['StartTime'],EndTime=Data['EndTime'],Limit=Data['Limit'],No=No)
 @App.route('/api/TravelInfo')
 def TravelInfo():
     return flask.jsonify(FireBase.Search('TravelInfo'))
@@ -38,14 +42,14 @@ def AdminLogin():
     return flask.render_template('Adminlogin.html')
 
 @App.route('/op/Info',methods=['GET','POST'])
-def Info():
+def CUDInfo():
     if Admin.LoginAuth():
         if flask.request.method=='POST':
             if flask.request.values.get('ActionType')=='CU':
                 FireBase.HandleUpdateDatabase('CU','TravelInfo')
             elif flask.request.values.get('ActionType')=='D':
                 FireBase.HandleUpdateDatabase('D','TravelInfo')
-        return flask.render_template('Info.html')
+        return flask.render_template('CUDInfo.html')
     else:
         return flask.redirect('/op/login')
 @App.route('/op/logout')

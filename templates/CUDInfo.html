@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>New/Update/Delete TravelInfo</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <form method="post" enctype="multipart/form-data">
+            <p><h1><label>新增或更新用</label></h1></p>
+            <p>編號<input type="text" name="No"></p>
+            <p>標題<input type="text" name="Title" required></p>
+            <p>圖片<input type="file" name="Image"></p>
+            <p>文案<textarea name="Content" required></textarea></p>
+            <p>活動開始時間<input type="date" name="StartTime" required></p>
+            <p>活動結束時間<input type="date" name="EndTime"></p>
+            <p>最高報名人數<input type="number" name="Limit" value="1"></p>
+            <input type="text" name="ActionType" value="CU" hidden readonly>
+            <p><input type="submit" ></p>
+        </form>
+        <form method="post">
+            <p><h1><label>刪除用</label></h1></p>
+            <p>該項目編號<input type="text" name="No"></p>
+            <input type="text" name="ActionType" value="D" hidden readonly>
+            <p><input type="submit" ></p>
+        </form>
+        <h1>到時候可以在右邊顯示Info</h1>
+    </body>
+</html>
