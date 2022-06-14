@@ -15,10 +15,15 @@ Admin=module.admin.Admin(FireBase)
 def Home():
     return '這是臨時首頁'
 
+@App.route('/Info')
+def RE_0():
+    return flask.redirect('/Info/0')
+
 @App.route('/Info/<No>')
 def Info(No):
     Data=FireBase.DataBase.collection('TravelInfo').document(No).get().to_dict()
-    return flask.render_template('Info.html',Title=Data['Title'],ImageUrl=Data['ImageUrl'],Content=Data['Content'],StartTime=Data['StartTime'],EndTime=Data['EndTime'],Limit=Data['Limit'],No=No)
+    return flask.render_template('Info.html',Title=Data['Title'],ImageUrl=Data['ImageUrl'],Content=Data['Content'],EventTime=Data['EventTime'],Quota=Data['Quota'],Price=Data['Price'],No=No)
+
 @App.route('/api/TravelInfo')
 def TravelInfo():
     return flask.jsonify(FireBase.Search('TravelInfo'))
@@ -52,6 +57,7 @@ def CUDInfo():
         return flask.render_template('CUDInfo.html')
     else:
         return flask.redirect('/op/login')
+
 @App.route('/op/logout')
 def AdminLogout():
     Flag,Cookie=Admin.HandleAdminLogout()

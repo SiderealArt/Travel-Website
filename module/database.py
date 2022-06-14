@@ -40,9 +40,9 @@ class DB:
                     'Title':Data1, # str
                     'ImageUrl':Data2, # str
                     'Content':Data3, # str
-                    'StartTime':Data4, # str
-                    'EndTime':Data5, # str
-                    'Limit':Data6 # str
+                    'EventTime':Data4, # str 
+                    'Quota':Data5, # str
+                    'Price':Data6
                 }
             elif TargetCollection=='AdminAccount':
                 Data={
@@ -94,10 +94,10 @@ class DB:
                 No=flask.request.values.get('No')
                 Title=flask.request.values.get('Title')
                 Content=flask.request.values.get('Content')
-                StartTime=flask.request.values.get('StartTime')
-                EndTime=flask.request.values.get('EndTime')
-                Limit=flask.request.values.get('Limit')
-                self.CreateUpdate(TargetCollection,No,Title,self.HandleUploadFile(),Content,StartTime,EndTime,Limit)
+                EventTime=flask.request.values.get('EventTime')
+                Quota=flask.request.values.get('Quota')
+                Price=flask.request.values.get('Price')
+                self.CreateUpdate(TargetCollection,No,Title,self.HandleUploadFile(),Content,EventTime,Quota,Price)
         elif Type=='D':
             if TargetCollection=='TravelInfo':
                 No=flask.request.values.get('No')
