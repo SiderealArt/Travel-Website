@@ -1,5 +1,6 @@
 import firebase_admin as firebase
-from firebase_admin import firestore
+from firebase_admin import firestore,storage
+import os
 import flask
 
 try:
@@ -9,7 +10,7 @@ except ModuleNotFoundError:
 
 class DB:
 
-    __slots__=('DataBase','Datalist')
+    __slots__=('DataBase','Datalist','Storage')
 
     def __init__(self)->None:
 
@@ -17,12 +18,16 @@ class DB:
         # 登入Firebase
         try:
             Cred=firebase.credentials.Certificate(tool.GetConfigData('Firebase','JsonFilePath'))
-            firebase.initialize_app(Cred)
+            firebase.initialize_app(Cred,{
+                'storageBucket':tool.GetConfigData('Firebase','StorageUrl')
+            })
             # 使用Firebase的firestore
             self.DataBase=firestore.client()
         except:
             print('[database-ERROR] 登入Firebase失敗，請檢查config.ini key設定路徑')
             self.DataBase=''
+        
+        self.Storage=storage.bucket()
 
 
     def CreateUpdate(self,TargetCollection,DocumentName,Data1,Data2=None,Data3=None,Data4=None,Data5=None,Data6=None):
@@ -33,7 +38,7 @@ class DB:
             if TargetCollection=='TravelInfo':
                 Data={
                     'Title':Data1, # str
-                    'ImageName':Data2, # str
+                    'ImageUrl':Data2, # str
                     'Content':Data3, # str
                     'StartTime':Data4, # str
                     'EndTime':Data5, # str
@@ -88,16 +93,30 @@ class DB:
             if TargetCollection=='TravelInfo':
                 No=flask.request.values.get('No')
                 Title=flask.request.values.get('Title')
-                ImageName=flask.request.values.get('ImageName')
                 Content=flask.request.values.get('Content')
                 StartTime=flask.request.values.get('StartTime')
                 EndTime=flask.request.values.get('EndTime')
                 Limit=flask.request.values.get('Limit')
-                self.CreateUpdate(TargetCollection,No,Title,ImageName,Content,StartTime,EndTime,Limit)
+                self.CreateUpdate(TargetCollection,No,Title,self.HandleUploadFile(),Content,StartTime,EndTime,Limit)
         elif Type=='D':
             if TargetCollection=='TravelInfo':
                 No=flask.request.values.get('No')
                 self.Delete(TargetCollection,No)
         return
+    
+    def HandleUploadFile(self)->str:
+        AllowFileType=set(['jpg','png'])
+        if flask.request.files.get('Image'):
+            File=flask.request.files['Image']
+        if File.filename.split('.')[1].lower() in AllowFileType:
+            TempPath=os.path.join(os.getcwd()+'/temp',File.filename)
+            File.save(TempPath)
+            blob=self.Storage.blob(File.filename)
+            blob.upload_from_filename(TempPath)
+            os.remove(TempPath)
+            blob.make_public()
+            return blob.public_url
+        else:
+            return ''
 
         
