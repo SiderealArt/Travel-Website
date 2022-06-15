@@ -30,7 +30,7 @@ class DB:
         self.Storage=storage.bucket()
 
 
-    def CreateUpdate(self,TargetCollection,DocumentName,Data1,Data2=None,Data3=None,Data4=None,Data5=None,Data6=None):
+    def CreateUpdate(self,TargetCollection,DocumentName,Data1,Data2=None,Data3=None,Data4=None,Data5=None,Data6=None,Data7=None,Data8=None):
         if self.DataBase=='':
             print('[database-ERROR] 你尚未登入')
             return
@@ -39,6 +39,8 @@ class DB:
                 Data={
                     'No':DocumentName,
                     'Title':Data1, # str
+                    'Type':Data7,
+                    'ShortContent':Data8,
                     'ImageUrl':Data2, # str
                     'Content':Data3, # str
                     'EventTime':Data4, # str 
@@ -94,11 +96,13 @@ class DB:
             if TargetCollection=='TravelInfo':
                 No=flask.request.values.get('No')
                 Title=flask.request.values.get('Title')
+                Type=flask.request.values.get('Type')
                 Content=flask.request.values.get('Content')
+                ShortContent=flask.request.values.get('ShortContent')
                 EventTime=flask.request.values.get('EventTime')
                 Quota=flask.request.values.get('Quota')
                 Price=flask.request.values.get('Price')
-                self.CreateUpdate(TargetCollection,No,Title,self.HandleUploadFile(),Content,EventTime,Quota,Price)
+                self.CreateUpdate(TargetCollection,No,Title,self.HandleUploadFile(),Content,EventTime,Quota,Price,Type,ShortContent)
         elif Type=='D':
             if TargetCollection=='TravelInfo':
                 No=flask.request.values.get('No')

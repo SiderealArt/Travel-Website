@@ -12,8 +12,19 @@
             <p><h1><label>新增或更新用</label></h1></p>
             <p>編號<input type="text" name="No" id="No"></p>
             <p>標題<input type="text" name="Title" id="Title"required></p>
+            <p>種類<select name="Type" id="Type" >
+                <option id="0" value="0">北基宜</option>
+                <option id="1" value="1">花東</option>
+                <option id="2" value="2">雲嘉南</option>
+                <option id="3" value="3">高屏</option>
+                <option id="4" value="4">日本</option>
+                <option id="5" value="5">歐洲</option>
+                <option id="6"value="6">中西亞</option>
+                <option id="7" value="7">韓國</option>
+            </select></p>
+            <p>首頁短文案<textarea name="ShortContent" id="ShortContent" required></textarea></p>
             <p>圖片<input type="file" name="Image"> ※編輯時注意圖片需重新上傳(避免出錯)</p>
-            <p>文案<textarea name="Content" id="Content" required></textarea></p>
+            <p>文案<textarea name="Content" id="Content"></textarea></p>
             <p>活動時間<input type="date" name="EventTime" id="EventTime" required></p>
             <p>最高報名人數<input type="number" name="Quota" id="Quota" value="1"></p>
             <p>價格<input type="text" name="Price" id="Price" required></p>

@@ -11,11 +11,12 @@ $.get('../api/TravelInfo',function (Data){
 });
 
 function Edit(i){
-    $('#Content').val('');
     $('#No').attr('value',DataBase[i]['No']);
     $('#Title').attr('value',DataBase[i]['Title']);
-    $('#Content').val(DataBase[i]['Content']);
+    $('#ShortContent').val(DataBase[i]['ShortContent']).change()
+    $('#Content').val(DataBase[i]['Content']).change();
     $('#EventTime').attr('value',DataBase[i]['EventTime']);
+    $("#Type").val(DataBase[i]['Type']).change();
     $('#Quota').attr('value',DataBase[i]['Quota']);
     $('#Price').attr('value',DataBase[i]['Price']);
 }
