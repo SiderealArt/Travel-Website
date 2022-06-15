@@ -115,6 +115,10 @@ class DB:
             File=flask.request.files['Image']
             if File.filename.split('.')[1].lower() in AllowFileType:
                 TempPath=os.path.join(os.getcwd()+'/temp',File.filename)
+                try:
+                    os.mkdir(os.getcwd()+'/temp')
+                except:
+                    pass
                 File.save(TempPath)
                 blob=self.Storage.blob(File.filename)
                 blob.upload_from_filename(TempPath)
