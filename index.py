@@ -13,7 +13,7 @@ Admin=module.admin.Admin(FireBase)
 
 @App.route('/')
 def Home():
-    return '這是臨時首頁'
+    return flask.render_template('home.html')
 
 @App.route('/Info')
 def RE_0():
