@@ -4,10 +4,10 @@
     <title>{{Title}}</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="/static/style/Info.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div class="image"><img src="{{ImageUrl}}" /></div>
+    <img src="{{ImageUrl}}" class="bg" />
     <div class="grad"></div>
     <div class="left">
       <div class="title">{{Title}}</div>
@@ -16,7 +16,17 @@
         剩餘名額:{{Quota}}<br />
         售價:{{Price}}
       </div>
-      {{ Content|safe }}
+      {% if Content !='' %} 
+      {{ Content|safe }} 
+      {% else %} 
+      <h1>{{ ShortContent|safe }}</h1> 
+      {% endif %}
+      <div class="ticketbotton">
+        <a href="https://www.google.com/"> 訂票去 </a>
+      </div>
+      <div class="guide">
+        <a href="#top" target="_self"> 回上層 </a>
+      </div>
     </div>
   </body>
 </html>

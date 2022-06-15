@@ -2,6 +2,16 @@ html{
   scroll-behavior: smooth;
 }
 
+.bg{
+    /*改成html img 連info 、 訂票按鈕*/
+    width: 99%;
+    height: 250px;
+    border:2px solid #ccc;
+	padding:5px;
+	box-shadow: 3px 3px 4px #ccc;
+    object-fit: cover;
+}
+
 .grad {
     height: 50px;
     background-image: linear-gradient(rgb(200, 245, 206), rgb(255, 255, 255));
@@ -9,12 +19,15 @@ html{
 
 
 .left {
+    width: 100vh;
+    position:absolute;
     margin: 1% 20%;
     font-family:DFKai-sb;
     text-align: left;
+    z-index: -1;
 }
 
- 
+
 .left .title {
     color: rgb(35, 42, 60);
     font-weight: bold;
@@ -40,8 +53,9 @@ html{
     font-size: 40px;
 }
 .left .guidetxt {
-    font-size: 25px;
+    font-size: 35px;
     font-weight: bold;
+    color: rgb(44, 35, 110);
 }
 .left .txttitle {
     text-indent: 20px;
@@ -100,4 +114,22 @@ td:nth-child(even){
 .left .checktxt {
     margin: 0% 100px;
     font-size: 20px;
+}
+.ticketbotton {
+    background-color: #ffffff;
+    border: 2px #2a37a7 outset;
+    color: white;
+    text-align: center;
+    margin: 10px 0px 20px 88%;
+    text-decoration: none;
+    font-size: 40px;
+    padding: 1px 2px 2px 2px;
+    border-radius: 15px;
+}
+.ticketbotton:hover {
+    border: 2px solid #dc122a;
+    background-color: #ffffff;
+    border-style: inset;    
+    padding: 1px 1px 1px 3px;
+    
 }
