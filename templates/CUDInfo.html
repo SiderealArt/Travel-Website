@@ -2,18 +2,21 @@
 <html>
     <head>
         <title>New/Update/Delete TravelInfo</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="/static/scripts/Info.js"></script>
         <meta charset="utf-8">
     </head>
     <body>
+        <div>
         <form method="post" enctype="multipart/form-data">
             <p><h1><label>新增或更新用</label></h1></p>
-            <p>編號<input type="text" name="No"></p>
-            <p>標題<input type="text" name="Title" required></p>
-            <p>圖片<input type="file" name="Image"></p>
-            <p>文案<textarea name="Content" required></textarea></p>
-            <p>活動時間<input type="date" name="EventTime" required></p>
-            <p>最高報名人數<input type="number" name="Quota" value="1"></p>
-            <p>價格<input type="text" name="Price" required></p>
+            <p>編號<input type="text" name="No" id="No"></p>
+            <p>標題<input type="text" name="Title" id="Title"required></p>
+            <p>圖片<input type="file" name="Image"> ※編輯時注意圖片需重新上傳(避免出錯)</p>
+            <p>文案<textarea name="Content" id="Content" required></textarea></p>
+            <p>活動時間<input type="date" name="EventTime" id="EventTime" required></p>
+            <p>最高報名人數<input type="number" name="Quota" id="Quota" value="1"></p>
+            <p>價格<input type="text" name="Price" id="Price" required></p>
             <input type="text" name="ActionType" value="CU" hidden readonly>
             <p><input type="submit" ></p>
         </form>
@@ -23,6 +26,21 @@
             <input type="text" name="ActionType" value="D" hidden readonly>
             <p><input type="submit" ></p>
         </form>
-        <h1>到時候可以在右邊顯示Info</h1>
+        </div>
+        <div>
+            <table class="InfoTable" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>編號</th>
+                        <th>標題</th>
+                        <th>活動日期</th>
+                        <th>剩餘報名人數</th>
+                        <th>連結</th>
+                        <th>修改</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </body>
 </html>
