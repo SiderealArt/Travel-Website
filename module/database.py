@@ -37,6 +37,7 @@ class DB:
         else:
             if TargetCollection=='TravelInfo':
                 Data={
+                    'No':DocumentName,
                     'Title':Data1, # str
                     'ImageUrl':Data2, # str
                     'Content':Data3, # str
@@ -108,14 +109,16 @@ class DB:
         AllowFileType=set(['jpg','png'])
         if flask.request.files.get('Image'):
             File=flask.request.files['Image']
-        if File.filename.split('.')[1].lower() in AllowFileType:
-            TempPath=os.path.join(os.getcwd()+'/temp',File.filename)
-            File.save(TempPath)
-            blob=self.Storage.blob(File.filename)
-            blob.upload_from_filename(TempPath)
-            os.remove(TempPath)
-            blob.make_public()
-            return blob.public_url
+            if File.filename.split('.')[1].lower() in AllowFileType:
+                TempPath=os.path.join(os.getcwd()+'/temp',File.filename)
+                File.save(TempPath)
+                blob=self.Storage.blob(File.filename)
+                blob.upload_from_filename(TempPath)
+                os.remove(TempPath)
+                blob.make_public()
+                return blob.public_url
+            else:
+                return ''
         else:
             return ''
 
