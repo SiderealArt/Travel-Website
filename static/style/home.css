@@ -1,15 +1,7 @@
-* {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    font-family: Roboto;
-    scroll-behavior: smooth;
-}
-
 .body {
     left: 50% !important;
     right: 50% !important;
-    width: 90%;
+    width: 100%;
     margin: auto !important;
     background-color: rgb(241, 251, 255);
     color: rgb(0, 0, 0);
@@ -51,7 +43,7 @@
 }
 
 #fixed-header-slide {
-    width: 90%;
+    width: 100%;
     height: 40px;
     position: fixed;
     top: 0px;
@@ -85,18 +77,36 @@
     background-color: rgba(181, 181, 181, 0.3);
     width: 120px;
     display: none;
+    list-style: none;
+}
+
+.nav li{
+    margin-left: -30px;
 }
 
 .nav li:hover {
+    
     font-size: 20px;
     font-weight: bold;
     background-color: rgba(255, 255, 255, 0.888);
     border: #000 solid 1.5px;
     border-radius: 5%;
+    /* margin-left: -50px; */
 }
 
 .nav li:hover a {
     color: rgb(0, 0, 0);
+}
+
+.carousel {
+    max-height: 610px;
+    max-width: 70%;
+    width: auto;
+    height: auto; 
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+    margin-top: 10px;
 }
 
 .pass{
@@ -105,8 +115,13 @@
 }
 
 .content {
+    left: 50% !important;
+    right: 50% !important;
+    width: 100%;
+    margin: auto !important;
+    width: 80%;
     height: 100%;
-    background-color: rgb(241, 251, 255);
+    background-color: rgb(248, 248, 248);
     /* margin-top: 40px; */
     margin-bottom: 20px;
 }
@@ -124,6 +139,7 @@
     margin-left: 15px;
     margin-right: 15px;
     text-align: center;
+    background-color: #fff;
 }
 
 .content #bottom {
@@ -147,5 +163,5 @@
 }
 
 .carousel-inner img{
-    height: 100vh;
+    height: 65vh;
 }
