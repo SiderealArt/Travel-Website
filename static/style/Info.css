@@ -19,7 +19,6 @@ html{
 
 
 .left {
-    width: 100vh;
     position:absolute;
     margin: 1% 20%;
     font-family:DFKai-sb;
@@ -37,7 +36,7 @@ html{
 .left .frame {
     color: #303b64;
     text-align: center;
-    width: 20%;
+    width: 30%;
     margin: 1% 0%;
     border-color: rgb(35, 42, 60);
     border-style: solid;
@@ -51,7 +50,6 @@ html{
     border-style: solid none solid none ;
     border-width: 2px;
     font-size: 40px;
-    margin-bottom: 40px;
 }
 .left .guidetxt {
     font-size: 35px;
@@ -121,16 +119,15 @@ td:nth-child(even){
     border: 2px #2a37a7 outset;
     color: white;
     text-align: center;
-    margin: 10px 0px 20px 88%;
+    margin: 10px 0px 20px 85%;
     text-decoration: none;
     font-size: 40px;
     padding: 1px 2px 2px 2px;
     border-radius: 15px;
-    width: 200px;
 }
 .ticketbotton:hover {
     border: 2px solid #dc122a;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
     border-style: inset;    
     padding: 1px 1px 1px 3px;
     
