@@ -5,7 +5,7 @@ $.get('../api/TravelInfo',function (Data){
     DataBase=Data;
     while (Data[i]!=undefined){
         var RowData=Data[i];
-        $(".InfoTable tbody").append('<tr><td>'+RowData['No']+'</td><td>'+RowData['Title']+'</td><td>'+RowData['EventTime']+'</td><td>'+RowData['Quota']+'</td><td><a href="../Info/'+RowData['No']+'">連結</a></td><td><button onclick="Edit('+RowData['No']+')">點我編輯</button></td></tr>')
+        $("#InfoTable tbody").append('<tr><td>'+RowData['No']+'</td><td>'+RowData['Title']+'</td><td>'+RowData['EventTime']+'</td><td>'+RowData['Quota']+'</td><td><a class="btn btn-success" role="button"href="../Info/'+RowData['No']+'">連結</a></td><td><button class="btn btn-warning"onclick="Edit('+RowData['No']+')">點我編輯</button></td></tr>')
         i++;
     }
 });
