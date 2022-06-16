@@ -127,6 +127,7 @@
                 </li>
             </ul>
         </div>
+        {% if LoginAuth() %}
         <div class="favorite">
             <a href="/future">
                 <i class="fa fa-heart" aria-hidden="true"></i>
@@ -139,16 +140,20 @@
                 來去訂票
             </a>
         </div>
-        <div class="o">123</div>
+        {% endif %}
+        <div class="o"></div>
         <div class="user">
+            {% if not LoginAuth() %}
             <a href="/login" target="_self">
                 <i class="fa fa-sign-in" aria-hidden="true"></i>
                 登入
             </a>
+            {% else %}
             <a href="/logout" target="_self">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 登出
             </a>
+            {% endif %}
         </div>
     </nav>
 </div>

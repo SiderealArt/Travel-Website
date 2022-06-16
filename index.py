@@ -10,7 +10,12 @@ App.config['JSON_AS_ASCII'] = False
 # Init Firebase
 FireBase=module.database.DB()
 Admin=module.admin.Admin(FireBase)
-Client=module.admin.Admin(FireBase)
+Client=module.client.client(FireBase)
+
+@App.template_global()
+def LoginAuth():
+    return Client.LoginAuth()
+
 
 @App.route('/')
 def Home():
@@ -25,6 +30,30 @@ def RE_0():
 def Info(No):
     Data=module.tool.FindData(FireBase.InfoData,No)
     return flask.render_template('Info.html',Title=Data['Title'],ImageUrl=Data['ImageUrl'],Content=Data['Content'],EventTime=Data['EventTime'],Quota=Data['Quota'],Price=Data['Price'],No=No,ShortContent=Data['ShortContent'])
+
+@App.route('/login',methods=['GET','POST'])
+def Clientlogin():
+    if flask.request.method=='POST':
+        Flag,Cookie=Client.HandleLogin()
+        if Flag:
+            return Cookie
+    return flask.render_template('login.html')
+
+@App.route('/logout')
+def Clientlogout():
+    Flag,Cookie=Client.HandleLogout()
+    if Flag:
+        return Cookie
+    else:
+        return flask.redirect('/login')
+
+@App.route('/register',methods=['GET','POST'])
+def ClientRegister():
+    if flask.request.method=='POST':
+        Flag,flash=Client.HandleRegist()
+        if Flag:
+            return flask.redirect('/login')
+    return flask.render_template('register.html')
 
 @App.route('/api/TravelInfo')
 def TravelInfo():

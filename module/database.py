@@ -51,6 +51,10 @@ class DB:
                 Data={
                     'Password':Data1,
                 }
+            elif TargetCollection=='ClientAccount':
+                Data={
+                    'Password':Data1,
+                }
             for Docs in self.DataBase.collection(TargetCollection).get():
                 if Docs.id==DocumentName:
                     if self.DataBase.collection(TargetCollection).document(DocumentName).get().to_dict()['Title']!=Data1:

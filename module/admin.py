@@ -10,21 +10,29 @@ except ModuleNotFoundError:
 
 class Admin:
 
-    __slots__=('FireBase','Account','HashModel')
+    __slots__=('FireBase','HashModel','Session')
 
     def __init__(self,Database:database.DB)->None:
         self.FireBase=Database
         self.HashModel=hashlib.sha256()
         #清除Session
-        for Doc in self.FireBase.DataBase.collection('Session-Admin').get():
-            self.FireBase.DataBase.collection('Session-Admin').document(Doc.id).delete()
+        self.Session=list()
+    
+    def SessionUpdateDelete(self,Type,Account,Token=None,LoginTime=None):
+        if Type=='update':
+            self.Session.append({'Account':Account,'Token':Token,'LoginTime':LoginTime})
+        elif Type=='delete':
+            for Data in self.Session:
+                if Data['Account']==Account:
+                    self.Session.remove(Data)
+        return
 
     def HandleAdminLogin(self):
         
         '''流程
         
-        管理員登入後會回傳auth到cookie，30分鐘內使用該auth都可以正常使用
-        判斷30分鐘內使用者有沒有登出，沒登出的話30分鐘後那個auth將無法使用
+        管理員登入後會回傳auth到cookie，1小時內使用該auth都可以正常使用
+        判斷30分鐘內使用者有沒有登出，沒登出的話1小時後那個auth將無法使用
         及要求重新登入
 
         '''
@@ -39,10 +47,7 @@ class Admin:
                     LoginTime=datetime.datetime.now()
                     self.HashModel.update((LoginTime.strftime('%Y/%m/%d-%H:%M:%S')+UserName).encode('utf-8'))
                     Token=self.HashModel.hexdigest()
-                    self.FireBase.DataBase.collection('Session-Admin').document(UserName).set({
-                        'Token':Token,
-                        'LoginTime':LoginTime.strftime('%Y/%m/%d-%H:%M:%S')
-                    })
+                    self.SessionUpdateDelete('update',UserName,Token,LoginTime.strftime('%Y/%m/%d-%H:%M:%S'))
                     self.HashModel=hashlib.sha256()
                     Cookie=flask.make_response(flask.redirect('/op'))
                     Cookie.set_cookie(key='LoginAccount',value=UserName,expires=LoginTime+datetime.timedelta(hours=1))
@@ -53,11 +58,10 @@ class Admin:
 
     def LoginAuth(self):
         LoginAccount=flask.request.cookies.get('LoginAccount')
-        for SessionAccount in self.FireBase.DataBase.collection('Session-Admin').get():
-            if SessionAccount.id==LoginAccount:
-                Session=self.FireBase.DataBase.collection('Session-Admin').document(SessionAccount.id).get().to_dict()
-                if flask.request.cookies.get('Token')==Session['Token']:
-                    if datetime.datetime.now()-datetime.datetime.strptime(Session['LoginTime'],'%Y/%m/%d-%H:%M:%S')<=datetime.timedelta(hours=1): # 超過生存時間
+        for SessionData in self.Session:
+            if SessionData['Account']==LoginAccount:
+                if flask.request.cookies.get('Token')==SessionData['Token']:
+                    if datetime.datetime.now()-datetime.datetime.strptime(SessionData['LoginTime'],'%Y/%m/%d-%H:%M:%S')<=datetime.timedelta(hours=1): # 超過生存時間
                         return True
                     else:
                         self.HandleReLogin()
@@ -76,7 +80,8 @@ class Admin:
     
     def HandleAdminLogout(self):
         if self.LoginAuth():
-            self.FireBase.DataBase.collection('Session-Admin').document(flask.request.cookies.get('LoginAccount')).delete()
+            UserName=flask.request.cookies.get('LoginAccout')
+            self.SessionUpdateDelete('delete',Account=UserName)
             Cookie=flask.make_response(flask.redirect('/op/login'))
             Cookie.delete_cookie('LoginAccount')
             Cookie.delete_cookie('Token')
@@ -84,11 +89,11 @@ class Admin:
         return False,''
 
     def HandleReLogin(self):
-        UserName=flask.request.cookies.get('Username')
+        UserName=flask.request.cookies.get('LoginAccout')
         Cookie=flask.make_response(flask.redirect('/op/login'))
         Cookie.delete_cookie('LoginAccount')
         Cookie.delete_cookie('Token')
-        self.FireBase.DataBase.collection('Session-Admin').document(UserName).delete()
+        self.SessionUpdateDelete('delete',Account=UserName)
         return
 
 if __name__=='__main__':
