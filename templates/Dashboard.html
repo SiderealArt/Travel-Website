@@ -11,35 +11,35 @@
     <script src="/static/scripts/Dashboard.js"></script>
 </head>
 
-<body>
-    <div class="navbar navbar-dark bg-secondary nav">
-        <div class="nav-brand" id="title" style="margin-left:5vh ;">後臺系統</div>
+<body style="padding-top: 60px;">
+    <nav class="navbar navbar-dark bg-secondary fixed-top" style="padding-bottom: 0px;">
+        <div class="nav-brand" id="title" style="margin-left:5vh;">後臺系統</div>
         <button class="navbar-toggler float-xs-right" style="margin-right:5vh ;" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-list" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-    </div>
-    <div class="collapse" id="collapse-list">
-        <ul class="navbar bg-dark justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link" href="#Info">活動資料</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/op/Info">新增/修改活動資料</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/op/Info">刪除活動資料</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">會員管理</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled">訂票管理</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/op/logout">登出</a>
-            </li>
-        </ul>
-    </div>
+        <div class="navbar-collapse collapse" id="collapse-list">
+            <ul class="navbar bg-dark justify-content-center" style="margin:0px;">
+                <li class="nav-item">
+                  <a class="nav-link" href="#Info">活動資料</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/op/Info">新增/修改活動資料</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/op/Info">刪除活動資料</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled">會員管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">訂票管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/op/logout">登出</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="card" style="height: 85vh;">
         <div class="card-header">
             活動資料

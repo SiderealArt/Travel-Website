@@ -10,12 +10,14 @@ App.config['JSON_AS_ASCII'] = False
 # Init Firebase
 FireBase=module.database.DB()
 Admin=module.admin.Admin(FireBase)
+Client=module.admin.Admin(FireBase)
 
 @App.route('/')
 def Home():
     return flask.render_template('home.html')
 
 @App.route('/Info')
+@App.route('/Info/')
 def RE_0():
     return flask.redirect('/Info/0')
 
@@ -29,7 +31,8 @@ def TravelInfo():
     return flask.jsonify(FireBase.InfoData)
 
 @App.route('/op')
-def OP():
+@App.route('/op/')
+def Dashboard():
     if Admin.LoginAuth():
         return flask.render_template('Dashboard.html')
     else:
