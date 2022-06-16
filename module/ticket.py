@@ -37,5 +37,6 @@ def HandleUserData(DataBase:database.DB):
         'enname':enname,
         'birthday':birthday,
         'cellphone':cellphone,
-        'email':email
+        'email':email,
+        'UserID':UserID
     })
