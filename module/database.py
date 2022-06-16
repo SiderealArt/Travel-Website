@@ -30,7 +30,7 @@ class DB:
         self.Storage=storage.bucket()
 
 
-    def CreateUpdate(self,TargetCollection,DocumentName,Data1,Data2=None,Data3=None,Data4=None,Data5=None,Data6=None,Data7=None,Data8=None):
+    def CreateUpdate(self,TargetCollection,DocumentName=None,Data1=None,Data2=None,Data3=None,Data4=None,Data5=None,Data6=None,Data7=None,Data8=None):
         if self.DataBase=='':
             print('[database-ERROR] 你尚未登入')
             return
@@ -54,6 +54,17 @@ class DB:
             elif TargetCollection=='ClientAccount':
                 Data={
                     'Password':Data1,
+                }
+            elif TargetCollection=='Ticket':
+                Data={
+                    'username':Data1,
+                    'name':Data2,
+                    'enname':Data3,
+                    'birthday':Data4,
+                    'cellphone':Data5,
+                    'email':Data6,
+                    'TravelInfo':Data7,
+                    'People':Data8
                 }
             for Docs in self.DataBase.collection(TargetCollection).get():
                 if Docs.id==DocumentName:

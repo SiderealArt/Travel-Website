@@ -42,6 +42,16 @@ def Clientlogin():
     else:
         return flask.redirect('/')
 
+@App.route('/ticket',methods=['GET','POST'])
+def ticket():
+    if flask.request.method=='POST':
+        module.ticket.HandleTicketApply(FireBase)
+        return flask.redirect('/')
+    if not Client.LoginAuth():
+        return flask.redirect('/login')
+    else:
+        return flask.render_template('ticket.html')
+
 @App.route('/logout')
 def Clientlogout():
     Flag,Cookie=Client.HandleLogout()

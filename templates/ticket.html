@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂票系統</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/250742b397.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/style/ticket.css" />
+    <script src="/static/scripts/ticket.js"></script>
+</head>
+
+<body>
+    <div data-role="page" class="body">
+        {% include "header.html" %}
+        <div class="content">
+            <div class="middle">
+                <div class="left">
+                    <form method="POST" action="">
+                        <fieldset >
+                            <legend>基本資料</legend>
+                            <ol>
+                                <li>
+                                    中文姓名： <input type="name" name="name" required> <br />
+                                </li>
+                                <li>
+                                    英文姓名： <input type="name" name="enname" required> <br />
+                                </li>
+                                <li>
+                                    出生年月日： <input type="date" name="birthday" required> <br />
+                                </li>
+                                <li>
+                                    身分證字號： <input type="text" name="ID" required> <br />
+                                </li>
+                                <li>
+                                    連絡電話(手機)： <input type="text" name="cellphone" required> <br />
+                                </li>
+                                <li>
+                                    電子郵件： <input type="email" name="email" required> <br />
+                                </li>
+                            </ol>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>旅遊配套選擇</legend>
+                            <ol>
+                                <li>
+                                &emsp;旅遊方案:<select name="TravelInfo" id="TravelInfo" required>
+                                </select>
+                                </li>
+                                <li>
+                                &emsp;同行人數:<input type="number" name="people" value="1" required>
+                                </li>
+                            </ol>
+                        </fieldset>
+                        <p class="btn">
+                            <input type="reset" value="清除">
+                            <input type="submit" value="提交">
+                        </p>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" class="footer">
+            Made by TC. AlphaSato. WLUN.
+        </div>
+    </div>
+</body>
+
+</html>
