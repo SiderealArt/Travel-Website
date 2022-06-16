@@ -169,8 +169,8 @@ fieldset li{
 }
 
 .left .btn {
-    margin-top: 30px;
-    margin-left: 300px;
+    margin-top: 10px;
+    margin-left: 280px;
 }
 
 .left .btn input {
@@ -184,3 +184,11 @@ fieldset li{
     margin-top: 70px;
     text-align: center;
 }
+.button {
+    background-color: #dcdcdc; /* Green */
+    border: none;
+    color: rgb(44, 44, 44);
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 16px;
+  }

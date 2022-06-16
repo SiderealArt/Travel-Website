@@ -53,7 +53,12 @@ def ticket():
 
 @App.route('/member',methods=['GET','POST'])
 def member():
-    return flask.render_template('member.html')
+    if Client.LoginAuth():
+        if flask.request.method=='POST':
+            module.ticket.HandleUserData(FireBase)
+        return flask.render_template('member.html')
+    else:
+        return flask.redirect('/login')
 
 
 @App.route('/logout')
@@ -78,11 +83,12 @@ def TravelInfo():
     return flask.jsonify(FireBase.InfoData)
     
 @App.route('/api/MemberTicket')
+def UserData():
+    return flask.jsonify(FireBase.HandleTicketApi())
+
+@App.route('/api/UserData')
 def MemberTicket():
-    if not Client.LoginAuth():
-        return flask.redirect('/login')
-    else:
-        return flask.jsonify(module.ticket.HandleTicketApi(FireBase,flask.request.cookies.get('UserLoginAccount')))
+    return flask.jsonify(FireBase.HandleUserDataApi())
 
 @App.route('/op')
 @App.route('/op/')

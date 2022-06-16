@@ -30,7 +30,7 @@ class DB:
         self.Storage=storage.bucket()
 
 
-    def CreateUpdate(self,TargetCollection,DocumentName=None,Data1=None,Data2=None,Data3=None,Data4=None,Data5=None,Data6=None,Data7=None,Data8=None):
+    def CreateUpdate(self,TargetCollection,DocumentName=None,Data1=None,Data2=None,Data3=None,Data4=None,Data5=None,Data6=None,Data7=None,Data8=None,Data9=None):
         if self.DataBase=='':
             print('[database-ERROR] 你尚未登入')
             return
@@ -64,7 +64,8 @@ class DB:
                     'cellphone':Data5,
                     'email':Data6,
                     'TravelInfo':Data7,
-                    'People':Data8
+                    'People':Data8,
+                    'UserID':Data9
                 }
             for Docs in self.DataBase.collection(TargetCollection).get():
                 if Docs.id==DocumentName:
@@ -146,4 +147,20 @@ class DB:
         else:
             return ''
 
-        
+    def HandleUserDataApi(self):
+        username=flask.request.cookies.get('UserLoginAccount')
+        Resp=list()
+        for Doc in self.DataBase.collection('UserData').get():
+            Data=self.DataBase.collection('UserData').document(Doc.id).get().to_dict()
+            if Data['username']==username:
+                Resp.append(Data)
+        return Resp
+    
+    def HandleTicketApi(self):
+        Username=flask.request.cookies.get('UserLoginAccount')
+        Resp=list()
+        for Doc in self.DataBase.collection('Ticket').get():
+            Data=self.DataBase.collection('Ticket').document(Doc.id).get().to_dict()
+            if Data['username']==Username:
+                Resp.append(Data)
+        return Resp
