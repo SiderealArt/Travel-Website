@@ -33,11 +33,14 @@ def Info(No):
 
 @App.route('/login',methods=['GET','POST'])
 def Clientlogin():
-    if flask.request.method=='POST':
-        Flag,Cookie=Client.HandleLogin()
-        if Flag:
-            return Cookie
-    return flask.render_template('login.html')
+    if not Client.LoginAuth():
+        if flask.request.method=='POST':
+            Flag,Cookie=Client.HandleLogin()
+            if Flag:
+                return Cookie
+        return flask.render_template('login.html')
+    else:
+        return flask.redirect('/')
 
 @App.route('/logout')
 def Clientlogout():
