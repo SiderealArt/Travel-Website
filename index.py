@@ -1,5 +1,4 @@
 # pipreqs . --encoding=utf8 --force
-
 import module as module
 
 import flask
@@ -52,6 +51,11 @@ def ticket():
     else:
         return flask.render_template('ticket.html')
 
+@App.route('/member',methods=['GET','POST'])
+def member():
+    return flask.render_template('member.html')
+
+
 @App.route('/logout')
 def Clientlogout():
     Flag,Cookie=Client.HandleLogout()
@@ -70,7 +74,15 @@ def ClientRegister():
 
 @App.route('/api/TravelInfo')
 def TravelInfo():
+    #FireBase.HandleApiDataUpdate() #若使用 會犧牲載入速度
     return flask.jsonify(FireBase.InfoData)
+    
+@App.route('/api/MemberTicket')
+def MemberTicket():
+    if not Client.LoginAuth():
+        return flask.redirect('/login')
+    else:
+        return flask.jsonify(module.ticket.HandleTicketApi(FireBase,flask.request.cookies.get('UserLoginAccount')))
 
 @App.route('/op')
 @App.route('/op/')

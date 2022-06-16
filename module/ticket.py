@@ -1,4 +1,3 @@
-from asyncio import QueueEmpty
 import flask
 
 
@@ -22,3 +21,11 @@ def HandleTicketApply(DataBase:database.DB):
         'Quota':str(int(Data['Quota'])-int(People))
     })
     return 
+
+def HandleTicketApi(DataBase:database.DB,Username):
+    Resp=list()
+    for Doc in DataBase.DataBase.collection('Ticket').get():
+        Data=DataBase.DataBase.collection('Ticket').document(Doc.id).get().to_dict()
+        if Data['username']==Username:
+            Resp.append(Data)
+    return Resp
