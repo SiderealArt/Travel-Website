@@ -70,12 +70,15 @@ def Dashboard():
 
 @App.route('/op/login',methods=['GET','POST'])
 def AdminLogin():
-    if flask.request.method=='POST':
-        Flag,Cookie=Admin.HandleAdminLogin()
-        if not Flag:
-            return flask.render_template('Adminlogin.html',ERROR='管理員帳號或密碼錯誤')
-        else:
-            return Cookie
+    if Admin.LoginAuth():
+        return flask.redirect('/op')
+    else:
+        if flask.request.method=='POST':
+            Flag,Cookie=Admin.HandleAdminLogin()
+            if not Flag:
+                return flask.render_template('Adminlogin.html',ERROR='管理員帳號或密碼錯誤')
+            else:
+                return Cookie
     return flask.render_template('Adminlogin.html')
 
 @App.route('/op/Info',methods=['GET','POST'])
