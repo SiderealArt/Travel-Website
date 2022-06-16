@@ -1,0 +1,42 @@
+@charset "UTF-8";
+html {
+  width: auto;
+  scroll-behavior: smooth;
+  background-color: darkgray;
+}
+
+#title {
+  font-family: 微軟正黑體;
+  font-size: xx-large;
+  font-weight: bolder;
+  color: white;
+}
+
+.collapse a{
+
+  color: white;
+}
+
+.card {
+  font-family: 微軟正黑體;
+  font-size: large;
+}
+
+.card .card-header {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.card #card_title {
+  padding-top: 2vh;
+  font-weight: bolder;
+}
+
+.card table {
+  font-size: medium;
+}
+
+#InfoTable a{
+  color: white;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <title>後臺系統</title>
+    <meta charset="utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="/static/style/Dashboard.css">
+    <script src="/static/scripts/Dashboard.js"></script>
+</head>
+
+<body>
+    <div class="navbar navbar-dark bg-secondary nav">
+        <div class="nav-brand" id="title" style="margin-left:5vh ;">後臺系統</div>
+        <button class="navbar-toggler float-xs-right" style="margin-right:5vh ;" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-list" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="collapse" id="collapse-list">
+        <ul class="navbar bg-dark justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link" href="#Info">活動資料</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/op/Info">新增/修改活動資料</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/op/Info">刪除活動資料</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">會員管理</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled">訂票管理</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/op/logout">登出</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card"  >
+        <div class="card-header">
+            活動資料
+        </div>
+        <table class="table table-dark" id="InfoTable" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>編號</th>
+                    <th>標題</th>
+                    <th>活動日期</th>
+                    <th>剩餘報名人數</th>
+                    <th>連結</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <!--<div class="card text-center">
+        <div class="card-title" id="card_title">會員管理</div><hr>
+        <div class="card-body">
+            <table class="table table-dark" id="user_table">
+            <tr>
+                <th>Account</th>
+                <th>Password</th>
+                <th>ACTION</th>
+            </tr>
+            </table>
+        </div>
+        <div class="card-footer ">
+            <a href="/Dashboard"><button class="btn btn-success btn-lg">更新</button></a>
+        </div>
+    </div>
+    <div class="card text-center">
+        <div class="card-title" id="card_title">訂票資訊</div><hr>
+        <div class="card-body">
+            <table class="table table-dark" id="ticket_table">
+            <tr>
+                <th>Account</th>
+                <th>Name</th>
+                <th>Birthday</th>
+                <th>Cellphone</th>
+                <th>Choose movie</th>
+                <th>Movie type</th>
+                <th>Cinema</th>
+                <th>Session</th>
+                <th>Seat row</th>
+                <th>Seat num</th>
+                <th>ACTION</th>
+            </tr>
+            </table>
+        </div>
+        <div class="card-footer ">
+            <a href="/Dashboard"><button class="btn btn-success btn-lg">更新</button></a>
+        </div>
+    </div>-->
+</body>
+<script src="/static/script/loadjson.js"></script>
+</html>
