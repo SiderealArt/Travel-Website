@@ -72,7 +72,9 @@ class client:
                     Cookie.set_cookie(key='UserLoginAccount',value=UserName,expires=LoginTime+datetime.timedelta(hours=1))
                     Cookie.set_cookie(key='Token',value=Token,expires=LoginTime+datetime.timedelta(hours=1))
                     return True,Cookie
-        return False,''
+                else:
+                    return False,flask.flash('密碼錯誤!')
+        return False,flask.flash('找不到這個帳號，請再試一次')
     
     def LoginAuth(self):
         LoginAccount=flask.request.cookies.get('UserLoginAccount')
