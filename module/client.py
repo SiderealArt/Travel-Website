@@ -54,6 +54,7 @@ class client:
         return True,flask.flash('申請帳號成功。請重新登入')
     
     def HandleLogin(self):
+        self.AccountListGet()
         UserName=flask.request.values.get('username')
         Password=flask.request.values.get('password')
         for Account in self.ClientAccount:
