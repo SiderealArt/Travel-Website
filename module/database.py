@@ -10,11 +10,11 @@ except ModuleNotFoundError:
 
 class DB:
 
-    __slots__=('DataBase','Datalist','Storage')
+    __slots__=('DataBase','InfoData','Storage')
 
     def __init__(self)->None:
 
-        self.Datalist=list()
+        self.InfoData=list()
         # 登入Firebase
         try:
             Cred=firebase.credentials.Certificate(tool.GetConfigData('Firebase','JsonFilePath'))
@@ -26,7 +26,7 @@ class DB:
         except:
             print('[database-ERROR] 登入Firebase失敗，請檢查config.ini key設定路徑')
             self.DataBase=''
-        
+        self.HandleApiDataUpdate('TravelInfo')
         self.Storage=storage.bucket()
 
 
@@ -58,27 +58,27 @@ class DB:
                         return
                     else: #同ID 同Title->更新
                         self.DataBase.collection(TargetCollection).document(DocumentName).update(Data)
+                        self.HandleApiDataUpdate(TargetCollection)
                         print('[database-INFO] 更新完成')
                         return
+
             self.DataBase.collection(TargetCollection).document(DocumentName).set(Data)
+            self.InfoData.append(Data)
             print('[database-INFO] 新增完成')
             return
 
 
-    def Search(self,TargetCollection)->list:
-        '''
-        Search用於document名稱無意義時使用
-        '''
+    def HandleApiDataUpdate(self,TargetCollection):
         if self.DataBase=='':
             print('[database-ERROR] 你尚未登入')
             return
         else:
-            self.Datalist=list()
+            self.InfoData=list()
             for Doc in self.DataBase.collection(TargetCollection).get():
                 Data=self.DataBase.collection(TargetCollection).document(Doc.id).get().to_dict()
                 # print(f'{Doc.id} {Data}')
-                self.Datalist.append(Data)
-            return self.Datalist
+                self.InfoData.append(Data)
+            return 
     
     def Delete(self,TargetCollection,No):
         if No =='':
@@ -87,6 +87,7 @@ class DB:
             try:
                 self.DataBase.collection(TargetCollection).document(No).delete()
                 print('[database-INFO] 刪除請求成功')
+                self.HandleApiDataUpdate(TargetCollection)
             except:
                 print('[database-ERROR] 刪除請求失敗')
             return 

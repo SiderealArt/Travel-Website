@@ -112,7 +112,7 @@ td:nth-child(even){
     color: #de2c2c;
 }
 .left .checktxt {
-    margin: 0% 100px;
+    margin: 0% 0% 0% 5%;
     font-size: 20px;
 }
 .ticketbotton {

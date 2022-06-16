@@ -21,17 +21,17 @@ def RE_0():
 
 @App.route('/Info/<No>')
 def Info(No):
-    Data=FireBase.DataBase.collection('TravelInfo').document(No).get().to_dict()
+    Data=module.tool.FindData(FireBase.InfoData,No)
     return flask.render_template('Info.html',Title=Data['Title'],ImageUrl=Data['ImageUrl'],Content=Data['Content'],EventTime=Data['EventTime'],Quota=Data['Quota'],Price=Data['Price'],No=No,ShortContent=Data['ShortContent'])
 
 @App.route('/api/TravelInfo')
 def TravelInfo():
-    return flask.jsonify(FireBase.Search('TravelInfo'))
+    return flask.jsonify(FireBase.InfoData)
 
 @App.route('/op')
 def OP():
     if Admin.LoginAuth():
-        return 'Hi '+flask.request.cookies.get('LoginAccount')+'<br><a href="/op/logout">登出</a>'
+        return flask.render_template('Dashboard.html')
     else:
         return flask.redirect('/op/login')
 
