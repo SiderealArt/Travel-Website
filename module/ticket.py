@@ -21,7 +21,7 @@ def HandleTicketApply(DataBase:database.DB):
     DataBase.DataBase.collection('TravelInfo').document(TravelInfo).update({
         'Quota':str(int(Data['Quota'])-int(People))
     })
-    DataBase.HandleApiDataUpdate()
+    DataBase.HandleApiDataUpdate('TravelInfo')
     return 
 
 def HandleUserData(DataBase:database.DB):
