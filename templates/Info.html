@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/static/style/home.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/250742b397.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.15.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
     {% include "header.html" %}
@@ -18,11 +20,9 @@
         {{EventTime}}<br />
         剩餘名額:{{Quota}}<br />
         售價:{{Price}}
-      </div >
-      {% if Content !='' %} 
-      {{ Content|safe }} 
-      {% else %} 
-      <h1>{{ ShortContent|safe }}</h1> 
+      </div>
+      {% if Content !='' %} {{ Content|safe }} {% else %}
+      <h1>{{ ShortContent|safe }}</h1>
       {% endif %}
       <div class="ticketbotton">
         <a href="../ticket"> 訂票去 </a>
