@@ -1,186 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>home</title>
     <link rel="stylesheet" href="/static/style/home.css" />
     <!--<link rel="icon" href="/static/pic/house-door.svg">-->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.15.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/250742b397.js" crossorigin="anonymous"></script>
     <script src="/static/scripts/Home.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div data-role="page" class="body" id="top">
-        {% include "header.html" %}
-        <div class="content">
-            <div class="pass" id="block1" class="block1"></div>
-            <div class="title">
-                <i class="fa-solid fa-flag"></i>
-                北基宜
-            </div>
-            <div id="carousel0" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carousel0" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                </div>
-                <div class="carousel-inner"></div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel0" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel0" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-            <div class="pass" id="block2"></div>
-            <div class="title">
-                <i class="fa-solid fa-flag"></i>
-                花東
-            </div>
-                <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carousel1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    </div>
-                    <div class="carousel-inner"></div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            <div class="pass" id="block3"></div>
-            <div class="title">
-                <i class="fa-solid fa-flag"></i>
-                雲嘉南
-            </div>
-                <div id="carousel2" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carousel2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    </div>
-                    <div class="carousel-inner"></div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            <div class="pass" id="block4"></div>
-            <div class="title">
-                <i class="fa-solid fa-flag"></i>
-                高屏
-            </div>
-                <div id="carousel3" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carousel3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    </div>
-                    <div class="carousel-inner"></div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel3" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                      </button>
-                      <button class="carousel-control-next" type="button" data-bs-target="#carousel3" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                      </button>
-                </div>
-            <div class="pass" id="block5"></div>
-            <div class="title">
-                <i class="fa-solid fa-globe"></i>
-                日本
-            </div>
-                <div id="carousel4" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carousel4" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    </div>
-                    <div class="carousel-inner"></div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel4" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carousel4" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            <div class="pass" id="block6"></div>
-            <div class="title" >
-                <i class="fa-solid fa-globe"></i>
-                歐洲
-            </div>
-                <div id="carousel5" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carousel5" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    </div>
-                    <div class="carousel-inner"></div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel5" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carousel5" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            <div class="pass" id="block7"></div>
-            <div class="title">
-                <i class="fa-solid fa-globe"></i>
-                中東亞
-            </div>
-                <div id="carousel6" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carousel6" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    </div>
-                    <div class="carousel-inner"></div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel6" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carousel6" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            <div class="pass" id="block8"></div>
-            <div class="title">
-                <i class="fa-solid fa-globe"></i>
-                韓國
-            </div>
-                <div id="carousel7" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carousel7" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    </div>
-                    <div class="carousel-inner"></div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel7" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carousel7" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            <div class="nav" id="bottom">
-                <a href="#" target="_self">
-                    <h3>回頂端</h3>
-                </a>
-            </div>
+      {% include "header.html" %}
+      <div id="carouselExampleControls" class="carousel slide mw-100 mt-0 h-full" data-bs-ride="carousel">
+        <div class="carousel-indicators"></div>
+        <div class="carousel-inner"></div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="content mb-5" id="a0">
+        <div class="title">
+          <i class="fa-solid fa-flag"></i>
+          北基宜
         </div>
-        <div data-role="footer" data-position="fixed" class="footer">
-            Made by TC. Alpha. WLUN. Sakura.
+        <div id="card-container" class="mt-8 flex gap-10 justify-center"></div>
+      </div>
+      <div class="content mb-5" id="a1">
+        <div class="title">
+          <i class="fa-solid fa-flag"></i>
+          花東
         </div>
+        <div id="card-container" class="mt-8 flex gap-10 justify-center"></div>
+      </div>
+      <div class="content mb-5" id="a2">
+        <div class="title">
+          <i class="fa-solid fa-flag"></i>
+          雲嘉南
+        </div>
+        <div id="card-container" class="mt-8 flex gap-10 justify-center"></div>
+      </div>
+      <div class="content mb-5" id="a3">
+        <div class="title">
+          <i class="fa-solid fa-flag"></i>
+          高屏
+        </div>
+        <div id="card-container" class="mt-8 flex gap-10 justify-center"></div>
+      </div>
+      <div class="content mb-5" id="a4">
+        <div class="title">
+          <i class="fa-solid fa-flag"></i>
+          日本
+        </div>
+        <div id="card-container" class="mt-8 flex gap-10 justify-center"></div>
+      </div>
+      <div class="content mb-5" id="a5">
+        <div class="title">
+          <i class="fa-solid fa-flag"></i>
+          歐洲
+        </div>
+        <div id="card-container" class="mt-8 flex gap-10 justify-center"></div>
+      </div>
+      <div class="content mb-5" id="a6">
+        <div class="title">
+          <i class="fa-solid fa-flag"></i>
+          中東亞
+        </div>
+        <div id="card-container" class="mt-8 flex gap-10 justify-center"></div>
+      </div>
+      <div class="content mb-5" id="a7">
+        <div class="title">
+          <i class="fa-solid fa-flag"></i>
+          韓國
+        </div>
+        <div id="card-container" class="mt-8 flex gap-10 justify-center"></div>
+      </div>
+      {%include "footer.html"%}
     </div>
-</body>
-
+  </body>
 </html>
